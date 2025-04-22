@@ -13,6 +13,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      overflow: hidden;
     }
 
     .popup {
@@ -24,6 +26,7 @@
       text-align: center;
       box-shadow: 0 0 10px #00ff00;
       animation: fadeIn 1.5s ease-out;
+      z-index: 1;
     }
 
     @keyframes fadeIn {
@@ -38,15 +41,28 @@
       opacity: 0;
       pointer-events: none;
     }
+
+    .jumpscare {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      background-size: cover;
+      background-position: center;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
-  <div class="popup">
+  <div class="popup" id="message">
     <h2>You tried to scam me,</h2>
     <p>but I'm smarter than you,<br>so I just scammed you.</p>
   </div>
 
-  <!-- Hidden 1x1 YouTube Rickroll that loops and autoplays -->
+  <!-- Hidden Rickroll video -->
   <iframe 
     class="rickroll"
     src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&loop=1&playlist=dQw4w9WgXcQ"
@@ -54,5 +70,130 @@
     allow="autoplay"
     allowfullscreen>
   </iframe>
+
+  <!-- Jumpscare container -->
+  <div class="jumpscare" id="scare"
+    style="background-image: url('https://i.imgur.com/zvATqIw.png');">
+  </div>
+
+  <audio id="scream" src="https://www.myinstants.com/media/sounds/scream.mp3" preload="auto"></audio>
+
+  <script>
+    const scare = document.getElementById("scare");
+    const scream = document.getElementById("scream");
+
+    function triggerJumpscare() {
+      scare.style.display = "block";
+      scream.currentTime = 0;
+      scream.play();
+      setTimeout(() => {
+        scare.style.display = "none";
+      }, 2000); // 2 seconds
+    }
+
+    setTimeout(() => {
+      triggerJumpscare(); // first scare after 4 sec
+      setInterval(triggerJumpscare, 7000); // repeat every 7 sec
+    }, 4000);
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reverse Scam</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .popup {
+      background-color: #222;
+      padding: 2rem;
+      border: 2px solid #00ff00;
+      border-radius: 12px;
+      max-width: 90%;
+      text-align: center;
+      box-shadow: 0 0 10px #00ff00;
+      animation: fadeIn 1.5s ease-out;
+      z-index: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .rickroll {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .jumpscare {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      background-size: cover;
+      background-position: center;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup" id="message">
+    <h2>You tried to scam me,</h2>
+    <p>but I'm smarter than you,<br>so I just scammed you.</p>
+  </div>
+
+  <!-- Hidden Rickroll video -->
+  <iframe 
+    class="rickroll"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&loop=1&playlist=dQw4w9WgXcQ"
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
+
+  <!-- Jumpscare container -->
+  <div class="jumpscare" id="scare"
+    style="background-image: url('https://imgur.com/a/Tw47vqu');">
+  </div>
+
+  <audio id="scream" src="https://www.myinstants.com/media/sounds/scream.mp3" preload="auto"></audio>
+
+  <script>
+    const scare = document.getElementById("scare");
+    const scream = document.getElementById("scream");
+
+    function triggerJumpscare() {
+      scare.style.display = "block";
+      scream.currentTime = 0;
+      scream.play();
+      setTimeout(() => {
+        scare.style.display = "none";
+      }, 2000); // 2 seconds
+    }
+
+    setTimeout(() => {
+      triggerJumpscare(); // first scare after 4 sec
+      setInterval(triggerJumpscare, 7000); // repeat every 7 sec
+    }, 4000);
+  </script>
 </body>
 </html>
